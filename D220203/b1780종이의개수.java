@@ -21,7 +21,7 @@ import java.util.StringTokenizer;
 
  */
 public class b1780종이의개수 {
-        static int[] answer = new int[3];
+    static int[] answer = new int[3];
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -62,44 +62,8 @@ public class b1780종이의개수 {
             if(chkDiff) break;
         }
 
+        /*
         if(chkDiff){
-            // y = 6
-            // x = 3, 4, 5 -> 3
-            // 4/3 * 3
-            // 5/3 * 3
-            // 3/3 * 3
-
-            // 6 = 6
-            // x = 6, 7, 8 -> 6
-            // 6/3 * 3
-
-            // 0 1 2 3 4 5 6 7 8 -> 0
-            // 9 10 11 12 13 14 15 16 17 => 9
-            // 10 / N *
-
-            /*
-               N이 9일때
-               0 1 2 -> 0
-               3 4 5 -> 3
-               6 7 8 -> 6
-
-               2/3 * 3 = 0
-               3/3 * 3 = 3
-               4/3 * 3 = 3
-               6/3 * 3 = 6
-               1 * 3
-               2 * 3
-
-               N이 27일때
-               0 1 2 3 4 5 6 7 8 -> 0
-
-               4 / 9 * 9 = 0
-               10 / 9 * 9 = 9
-
-
-               9 10 11 12 13 14 15 16 17 -> 9
-               18 19 20 21 22 23 24 25 26 -> 18
-            * */
             for(int i = y ; i < y+3 ; i++){
                 for(int j = x ; j < x+3 ; j++){
                     // 0, 0
@@ -111,22 +75,15 @@ public class b1780종이의개수 {
                     // 6, 0
                     // 6, 3
                     // 6, 6
-                    //123123
-                    // 27
-                    // 0, 0
-                    // 0, 9
-                    // 0 11 -> 0 9
-                    // 0, 18
-                    // 9, 0
-                    // 9, 9
-                    // 9, 18
-                    // 18, 0
-                    // 18, 9
-                    // 18, 18
-
-
-                    //process(arr, N/3, i/(N/3) * N/3, j/(N/3) * N/3);
                     process(arr, N/3, i * N/3, j * N/3);
+                }
+            }
+        }
+        */
+        if(chkDiff){
+            for(int i = 0 ; i < 3 ; i++){
+                for(int j = 0 ; j < 3 ; j++){
+                    process(arr, N/3, y + ((N/3) * i), x + ((N/3) * j));
                 }
             }
         }
