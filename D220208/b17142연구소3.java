@@ -32,7 +32,8 @@ public class b17142연구소3 {
     static int[][] arrMap;
     static int[][] copyMap;
     static boolean[][] visit;
-    static boolean[][] copyVisit;
+    static int answer = 99;
+
     static ArrayList<virus> virusList;
     static int[] dx = {-1, 0, 1, 0};
     static int[] dy = {0, 1, 0, -1};
@@ -71,6 +72,8 @@ public class b17142연구소3 {
         int[] virus = new int[virusList.size()];
 
         virusComb(virus, selectVirus, 0, M);
+
+        System.out.println(answer);
     }
 
     static void virusComb(int[] virus, boolean[] selectVirus, int startIdx, int virusCnt){
@@ -101,19 +104,29 @@ public class b17142연구소3 {
     static void process(boolean[] selectVirus){
         for(int i = 0 ; i < selectVirus.length ; i++){
             if(selectVirus[i] == true){
+
+                for(int j = 0 ; j < virusList.size() ; j++){
+                 //   virusMap[virusList.get(j).y][virusList.get(j).x].score = 0;
+                }
+
                 virusMap[virusList.get(i).y][virusList.get(i).x].score = 0;
                 visit = new boolean[arrMap.length][arrMap.length];
                 bfs(i);
             }
         }
 
+        int maxNum = 0;
+
         for(int i = 0 ; i < virusMap.length ; i++){
             for(int j = 0 ; j < virusMap[0].length ; j++){
-                System.out.print(virusMap[i][j].score + " ");
+                String s = String.format("%02d", virusMap[i][j].score);
+                System.out.print(s + " ");
+                if(virusMap[i][j].score != 99 && maxNum < virusMap[i][j].score) maxNum = virusMap[i][j].score;
             }
             System.out.println("");
         }
         System.out.println("");
+        if(answer > maxNum) answer = maxNum;
     }
 
     // 바이러스 퍼트리기
@@ -124,15 +137,11 @@ public class b17142연구소3 {
         virus.x = virusList.get(idx).x;
         virus.y = virusList.get(idx).y;
         virus.score = 0;
-        int score = 0;
         queue.add(virus);
         visit[virus.y][virus.x] = true;
 
         while (!queue.isEmpty()) {
-            score++;
-
             virus point = (virus)queue.poll();
-            //copyMap[point.y][point.x] = score;
             visit[point.y][point.x] = true;
 
             for(int i = 0 ; i < 4 ; i++){
@@ -143,11 +152,13 @@ public class b17142연구소3 {
                     if(nextY < copyMap.length && nextX < copyMap[0].length){
                         if(virusMap[nextY][nextX].score >= virusMap[point.y][point.x].score+1 && copyMap[nextY][nextX] == 0 && visit[nextY][nextX] == false){
                             virusMap[nextY][nextX].score = virusMap[point.y][point.x].score+1;
+                            //System.out.print(virusMap[nextY][nextX].score + " ");
                             queue.add(new virus(nextY, nextX));
                         }
                     }
                 }
             }
         }
+        //System.out.println("");
     }
 }
