@@ -34,19 +34,18 @@ public class b1003피보나치함수_topdown {
         }
     }
 
-    static Node process(Node node){
-        if(node.number==0){
+    static Node process(Node node) {
+        if (node.number == 0) {
             return new Node(0, 1, 0);
-        }
-        else if(node.number==1){
+        } else if (node.number == 1) {
             return new Node(0, 0, 1);
         }
 
-        if(dp[node.number].number != 0){
-            return dp[N];
-        }
-        else{
+        if (dp[node.number].number != 0) {
+            //   return dp[N];
+        } else {
 //            return new Node(process(dp[N-2].number + dp[N-1].number, dp[N-2].countZero + dp[N-1].countZero, dp[N-2].countOne + dp[N-1].countOne);
         }
+        return null;
     }
 }

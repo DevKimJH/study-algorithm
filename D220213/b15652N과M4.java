@@ -42,8 +42,6 @@ public class b15652N과M4 {
             bw.write("\n");
         }
 
-
-
         for(int i = 1 ; i <= N ; i++){
             if(index < M){
                 if(index == 0){

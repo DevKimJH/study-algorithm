@@ -32,21 +32,6 @@ public class b15649N과M1 {
     static void process(int index, boolean[] chkArr, int N, int M){
 
         // M개 뽑았을 경우
-        /*
-        if(cntOfChk == M){
-
-            for(int i = 1 ; i <= N ; i++){
-                if(chkArr[i] == true){
-                    System.out.print(answer[i] + " ");
-                }
-            }
-            System.out.println("");
-
-
-            return;
-        }
-        */
-
         if(index == M){
             for(int i = 0 ; i < M ; i++){
                 System.out.print(answer[i] + " " );

@@ -106,7 +106,7 @@ public class b17142연구소3 {
             if(selectVirus[i] == true){
 
                 for(int j = 0 ; j < virusList.size() ; j++){
-                 //   virusMap[virusList.get(j).y][virusList.get(j).x].score = 0;
+                    //   virusMap[virusList.get(j).y][virusList.get(j).x].score = 0;
                 }
 
                 virusMap[virusList.get(i).y][virusList.get(i).x].score = 0;

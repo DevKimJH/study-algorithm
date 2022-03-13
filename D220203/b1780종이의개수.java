@@ -24,7 +24,7 @@ public class b1780종이의개수 {
     static int[] answer = new int[3];
 
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in) );
         StringBuilder sb = new StringBuilder();
         StringTokenizer st;
 
@@ -62,24 +62,6 @@ public class b1780종이의개수 {
             if(chkDiff) break;
         }
 
-        /*
-        if(chkDiff){
-            for(int i = y ; i < y+3 ; i++){
-                for(int j = x ; j < x+3 ; j++){
-                    // 0, 0
-                    // 0, 3
-                    // 0, 6
-                    // 3, 0
-                    // 3, 3
-                    // 3, 6
-                    // 6, 0
-                    // 6, 3
-                    // 6, 6
-                    process(arr, N/3, i * N/3, j * N/3);
-                }
-            }
-        }
-        */
         if(chkDiff){
             for(int i = 0 ; i < 3 ; i++){
                 for(int j = 0 ; j < 3 ; j++){

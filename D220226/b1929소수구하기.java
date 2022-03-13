@@ -22,6 +22,7 @@ public class b1929소수구하기 {
         // chk가 True인 경우 지워진 것
         chkArr[0] = chkArr[1] = true;
 
+
         for(int i = 2 ; i * i <= N ; i++){
             if(chkArr[i] == true) continue;
 
