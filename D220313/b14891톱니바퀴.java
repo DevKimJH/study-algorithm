@@ -66,10 +66,13 @@ public class b14891톱니바퀴 {
         }
 
         for(int i = 0 ; i < 4; i++){
-            if(wheelInfo[i].charAt(0)-'0' == 1){
-                answer = answer + (int)Math.pow(2.0, i+1);
+            if(wheelInfo[i].charAt(0) == '1' ){
+                //System.out.println(Math.pow(2.0, i));
+                answer = answer + (int)Math.pow(2.0, i);
             }
         }
+
+        System.out.println(answer);
     }
 
 
@@ -94,8 +97,7 @@ public class b14891톱니바퀴 {
         // 돌린 톱니 오른쪽 체크
         if(flag != 0 && wheelNumber < 3){
             // 선택된 톱니바퀴랑 오른쪽 톱니바퀴 맞닿는 톱니가 다르면 반대로 회전
-            if(right != wheelInfo[wheelNumber+1].charAt(7)){
-                //process(wheelNumber+1, direction, 1);
+            if(right != wheelInfo[wheelNumber+1].charAt(6) - '0'){
                 process(wheelNumber+1, direction * -1, 1);
             }
             // 다르면 반대로 회전
@@ -106,7 +108,7 @@ public class b14891톱니바퀴 {
         // 돌린 톱니 왼쪽 체크
         if(flag != 1 && wheelNumber > 0){
             // 선택된 톱니바퀴랑 왼쪽 톱니바퀴 맞닿는 톱니가 다르면 반대로 회전
-            if(left == wheelInfo[wheelNumber-1].charAt(2)){
+            if(left != wheelInfo[wheelNumber-1].charAt(2) - '0'){
                 //process(wheelNumber-1, direction, 0);
                 process(wheelNumber-1, direction * -1, 0);
             }
