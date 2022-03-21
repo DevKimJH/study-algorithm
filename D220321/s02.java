@@ -19,18 +19,25 @@ public class s02 {
         StringBuilder sb = new StringBuilder();
         StringTokenizer st;
 
-        int n = 5;
-        boolean clockwise = true;
+        int n = 6;
+        boolean clockwise = false;
         int[][] mapArr = new int[n][n];
         int[][] answer = new int[n][n];
 
 
 
 
-        process(mapArr, n, 0, 0, 0, 1);
-        process(mapArr, n, 1, n-1, 0, 1);
-        process(mapArr, n, 2, n-1, n-1, 1);
-        process(mapArr, n, 3, 0, n-1, 1);
+        if(clockwise){
+            process(mapArr, n, 0, 0, 0, 1, clockwise);
+            process(mapArr, n, 1, n-1, 0, 1, clockwise);
+            process(mapArr, n, 2, n-1, n-1, 1, clockwise);
+            process(mapArr, n, 3, 0, n-1, 1, clockwise);
+        }else{
+            process(mapArr, n, 1, 0, 0, 1, clockwise);
+            process(mapArr, n, 2, n-1, 0, 1, clockwise);
+            process(mapArr, n, 3, n-1, n-1, 1, clockwise);
+            process(mapArr, n, 0, 0, n-1, 1, clockwise);
+        }
 
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < n ; j++){
@@ -44,10 +51,13 @@ public class s02 {
     // i가 1이면 아래로
     // i가 2면 왼쪽으로
     // i가 3이면 위로
-    static void process(int[][] mapArr, int idx, int direction, int x, int y, int mark){
+    static void process(int[][] mapArr, int idx, int direction, int x, int y, int mark, boolean clockwise){
 
         if(idx == 1) {
             mapArr[y][x] = mark;
+            return;
+        }
+        else if(idx == 0){
             return;
         }
 
@@ -60,13 +70,22 @@ public class s02 {
 
         x = x - dx[direction];
         y = y - dy[direction];
-        direction = (direction+1) % 4;
+        if(clockwise){
+            direction = (direction+1) % 4;
+        }
+        else{
+            direction--;
+            if(direction == -1){
+                direction = 3;
+            }
+        }
+
         x = x + dx[direction];
         y = y + dy[direction];
 
 
 
 
-        process(mapArr, idx-2, direction, x, y, mark);
+        process(mapArr, idx-2, direction, x, y, mark, clockwise);
     }
 }
