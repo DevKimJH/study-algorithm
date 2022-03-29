@@ -83,6 +83,7 @@ public class b14891톱니바퀴 {
 
         // 톱니 오른쪽(시계) 회전
         if(direction == 1){
+            //  Character.getNumericValue() 대체 가능
             int moveNumber = wheelInfo[wheelNumber].charAt(7) - '0';
             wheelInfo[wheelNumber].deleteCharAt(7);
             wheelInfo[wheelNumber].insert(0, moveNumber);
