@@ -76,7 +76,6 @@ public class B21611마법사상어와블리자드 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
         st = new StringTokenizer(br.readLine(), " ");
 
@@ -86,10 +85,10 @@ public class B21611마법사상어와블리자드 {
         // 마법 사용 횟수
         int M = Integer.parseInt(st.nextToken());
 
+        int answer = 0;
 
         HashMap<Integer, Node> hash = new HashMap();    // idx의 (r,c) 좌표 값 저장을 위한 Hash 사용
         Node[][] mapArr = new Node[N+1][N+1];           // 좌표의 Idx와 구슬 종류를 표현하기 위한 클래스 배열 생성
-        int[][] testMap = new int[N+1][N+1];
 
         for(int i = 0 ; i <= N ; i++){
             for(int j = 0 ; j <= N ; j++){
@@ -163,9 +162,6 @@ public class B21611마법사상어와블리자드 {
                 crushNodeList.add(node);
             }
 
-
-            if(i == 1) System.out.println("");
-
             //// 블리자드로 깨진 구슬 공간 당기기 ////
             for(int j = crushNodeList.size()-1 ; j >= 0 ; j--){
                 int r = crushNodeList.get(j).r;
@@ -225,13 +221,11 @@ public class B21611마법사상어와블리자드 {
 
                     // 4개 이상일 경우
                     if(countIdx >= 3){
-                        //System.out.println("BOOOM");
-
                         for(int k = j ; k <= j + countIdx ; k++){
                             crushNodeList.add(new Node(0, k, hash.get(k).r, hash.get(k).c));
                         }
-
                         j = j + countIdx;
+                        answer = answer + (score * (countIdx+1));
                     }
                 }
                 //// 구슬 폭발 종료 ////
@@ -290,15 +284,28 @@ public class B21611마법사상어와블리자드 {
 
             for(int j = 1 ; j < (N * N)-1 ; j++){
                 int score = hash.get(j).beedScore;
-                if(score == 0) break;
+                //if(score == 0) break;
+
+                /*
+                if(score == 0){
+                    System.out.println("");
+                }
+                */
 
                 int nodeIdx = j+1;
                 int countIdx = 1;
 
+                if(score == 0){
+                    countIdx = 0;
+                }
+                else{
+                    countIdx = 1;
+                }
+
                 while(nodeIdx < N * N) {
                     // 해당 노드의 Idx정보가 Null이 아니고
                     // Idx beedScore와 비교하는 beedScore가 같은 경우
-                    if (hash.get(nodeIdx) != null && hash.get(nodeIdx).beedScore == score) {
+                    if (score != 0 && hash.get(nodeIdx) != null && hash.get(nodeIdx).beedScore == score) {
                         countIdx++; // 4개 이상 쌓였는지 확인하기 위한 변수
                         nodeIdx++;  // 다음 NodeIdx의 beedScore를 찾기 위해 +1
                     } else {
@@ -340,9 +347,15 @@ public class B21611마법사상어와블리자드 {
 
 
             hash = copyHash;
-            printMap(copyMapArr);
+            //printMap(copyMapArr);
+            //System.out.println(i);
         }
         // 블리자드 마법 종료
+
+        //System.out.println(answer);
+        bw.write(String.valueOf(answer));
+        bw.flush();
+        bw.close();
     }
 
     static void printMap(Node[][] mapArr){
