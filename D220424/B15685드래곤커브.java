@@ -70,6 +70,7 @@ public class B15685드래곤커브 {
             1
             0 0 0 3
             */
+
             for(int j = 1 ; j <= curve ; j++){
                 prevDirection = new StringBuilder(direction);
                 prevDirection.reverse();
