@@ -44,6 +44,47 @@ public class S술래잡기 {
 4 2 1
 2 4
 
+5 24 9 100
+3 4 1
+5 1 2
+3 2 1
+5 4 1
+5 2 1
+1 2 2
+2 4 1
+4 3 2
+4 1 2
+4 2 1
+2 1 1
+1 5 1
+3 1 2
+2 2 1
+1 4 1
+4 4 1
+4 5 2
+3 5 1
+5 3 1
+2 3 2
+5 5 2
+1 3 1
+2 5 1
+1 1 1
+1 1
+1 5
+3 2
+3 1
+4 1
+5 5
+5 1
+2 4
+2 5
+
+1 좌우 (우)
+2 상하 (하)
+5 2 0 10
+1 4 2
+2 4 1
+
  */
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -99,8 +140,6 @@ public class S술래잡기 {
         // K턴만큼 게임 진행
         for(int T = 1 ; T <= K ; T++){
             //// 1. 도망자가 움직인다. ////
-
-
             for(int i = 0 ; i < M ; i++){
                 if(runners[i] == null) continue;
                 int runnerR = runners[i].r;
@@ -140,11 +179,9 @@ public class S술래잡기 {
                     }
                 }
             }
-
             //// 1. 도망자 이동 종료 ////
 
             //// 2. 술래의 이동 ////
-
             // 달팽이(나선형)으로 이동
             int nextR = catcher.r + dr[catcher.moveDirection];
             int nextC = catcher.c + dc[catcher.moveDirection];
@@ -227,10 +264,23 @@ public class S술래잡기 {
                 }
             }
 
+            //System.out.println("T:"+T + " R:" + nextR + " C:" + nextC + " MD:" + moveDirection);
+
             // 방향을 유지한 상태로 2칸 더 확인
             for(int i = 0 ; i < 2 ; i++){
                 nextR = nextR + dr[moveDirection];
                 nextC = nextC + dc[moveDirection];
+
+                /*
+                if(0 <= nextR && nextR < N && 0 <= nextC && nextC < N){
+
+                }
+                else{
+                    moveDirection = ( moveDirection + 2 ) % 4;
+                    nextR = nextR + dr[moveDirection] + dr[moveDirection];
+                    nextC = nextC + dc[moveDirection] + dc[moveDirection];
+                }
+                */
 
                 for(int j = 0 ; j < M ; j++){
                     if(runners[j] != null){
@@ -242,6 +292,7 @@ public class S술래잡기 {
                         }
                     }
                 }
+                //System.out.println("T:"+T + " R:" + nextR + " C:" + nextC + " MD:" + moveDirection);
             }
             answer = answer + (countCatch * T);
         }
