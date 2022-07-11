@@ -9,6 +9,20 @@ public class E곱하기혹은더하기 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String S = br.readLine();
-        
+        int lengthOfString = S.length();
+        int answer = 0;
+
+
+        for(int i = 0 ; i < lengthOfString; i++){
+            int number = Integer.valueOf(S.substring(i, i+1));
+            // if(number == 0 || answer == 0 || number == 1 || answer == 1){
+            if(number <= 1 || answer <= 1){
+                answer = answer + number;
+            }
+            else{
+                answer = answer * number;
+            }
+        }
+        System.out.print(answer);
     }
 }
